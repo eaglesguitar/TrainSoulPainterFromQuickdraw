@@ -6,11 +6,11 @@ set -e
 DATA_ROOT=data
 CAFFE_TOOLS=$CAFFE_ROOT/build/tools
 
-TRAIN_IMAGE_ROOT=$DATA_ROOT/quickdraw_train/
+TRAIN_IMAGE_ROOT=$DATA_ROOT/quickdraw_train_image/
 TRAIN_MAPPING_FILE=$DATA_ROOT/quickdraw_train.txt
 TRAIN_OUTPUT_LMDB=$DATA_ROOT/quickdraw_train_lmdb
 
-VAL_IMAGE_ROOT=$DATA_ROOT/quickdraw_val/
+VAL_IMAGE_ROOT=$DATA_ROOT/quickdraw_val_image/
 VAL_MAPPING_FILE=$DATA_ROOT/quickdraw_val.txt
 VAL_OUTPUT_LMDB=$DATA_ROOT/quickdraw_val_lmdb
 

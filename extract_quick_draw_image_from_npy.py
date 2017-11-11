@@ -21,26 +21,32 @@ def mkdir_p(path):
 
 dataRoot = "data/"
 
-TRAIN_IMAGE_ROOT = dataRoot + "quickdraw_train/"
-VAL_IMAGE_ROOT = dataRoot + "quickdraw_val/"
-TEST_IMAGE_ROOT = dataRoot + "quickdraw_test/"
+TRAIN_IMAGE_ROOT = dataRoot + "quickdraw_train_image/"
+VAL_IMAGE_ROOT = dataRoot + "quickdraw_val_image/"
+TEST_IMAGE_ROOT = dataRoot + "quickdraw_test_image/"
 
-shutil.rmtree(TRAIN_IMAGE_ROOT)
+if os.path.exists(TRAIN_IMAGE_ROOT):
+    shutil.rmtree(TRAIN_IMAGE_ROOT)
 mkdir_p(TRAIN_IMAGE_ROOT)
 
-shutil.rmtree(TEST_IMAGE_ROOT)
+if os.path.exists(TEST_IMAGE_ROOT):
+    shutil.rmtree(TEST_IMAGE_ROOT)
 mkdir_p(TEST_IMAGE_ROOT)
 
-shutil.rmtree(VAL_IMAGE_ROOT)
+if os.path.exists(VAL_IMAGE_ROOT):
+    shutil.rmtree(VAL_IMAGE_ROOT)
 mkdir_p(VAL_IMAGE_ROOT)
 
 trainTxt = dataRoot + "/quickdraw_train.txt"
 testTxt = dataRoot + "/quickdraw_test.txt"
 valTxt = dataRoot + "/quickdraw_val.txt"
 
-os.remove(trainTxt)
-os.remove(testTxt)
-os.remove(valTxt)
+if os.path.exists(trainTxt):
+    os.remove(trainTxt)
+if os.path.exists(testTxt):
+    os.remove(testTxt)
+if os.path.exists(valTxt):
+    os.remove(valTxt)
 # open file with append mode
 trainTxtFile = open(trainTxt, "a")
 testTxtFile = open(testTxt, "a")
@@ -54,7 +60,6 @@ def handleNpyFile(npyFile, type):
     print "extracting " + npyFile + "..."
 
     fname = npyFile.split('/')[-1].split('.')[0]
-    print fname
 
     loadedFile = np.load(npyFile);
     print "has images: " + str(len(loadedFile))
