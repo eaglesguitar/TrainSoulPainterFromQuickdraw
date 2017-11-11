@@ -10,6 +10,10 @@ TRAIN_IMAGE_ROOT=$DATA_ROOT/quickdraw_train_image/
 TRAIN_MAPPING_FILE=$DATA_ROOT/quickdraw_train.txt
 TRAIN_OUTPUT_LMDB=$DATA_ROOT/quickdraw_train_lmdb
 
+TEST_IMAGE_ROOT=$DATA_ROOT/quickdraw_test_image/
+TEST_MAPPING_FILE=$DATA_ROOT/quickdraw_test.txt
+TEST_OUTPUT_LMDB=$DATA_ROOT/quickdraw_test_lmdb
+
 VAL_IMAGE_ROOT=$DATA_ROOT/quickdraw_val_image/
 VAL_MAPPING_FILE=$DATA_ROOT/quickdraw_val.txt
 VAL_OUTPUT_LMDB=$DATA_ROOT/quickdraw_val_lmdb
@@ -46,6 +50,13 @@ if [ -d "$TRAIN_OUTPUT_LMDB" ]; then
   fi
 fi
 
+if [ -d "$TEST_OUTPUT_LMDB" ]; then
+  if [ "$(ls -A $TEST_OUTPUT_LMDB)" ]; then
+       echo "$TEST_OUTPUT_LMDB is not Empty, clear it first"
+       exit 1
+  fi
+fi
+
 if [ -d "$VAL_OUTPUT_LMDB" ]; then
   if [ "$(ls -A $VAL_OUTPUT_LMDB)" ]; then
        echo "$VAL_OUTPUT_LMDB is not Empty, clear it first"
@@ -62,6 +73,16 @@ GLOG_logtostderr=1 $CAFFE_TOOLS/convert_imageset \
     $TRAIN_IMAGE_ROOT \
     $TRAIN_MAPPING_FILE \
     $TRAIN_OUTPUT_LMDB
+
+echo "Creating test lmdb..."
+
+GLOG_logtostderr=1 $CAFFE_TOOLS/convert_imageset \
+    --resize_height=$RESIZE_HEIGHT \
+    --resize_width=$RESIZE_WIDTH \
+    --shuffle \
+    $TEST_IMAGE_ROOT \
+    $TEST_MAPPING_FILE \
+    $TEST_OUTPUT_LMDB
 
 echo "Creating val lmdb..."
 
