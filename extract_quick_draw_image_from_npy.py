@@ -5,9 +5,9 @@ import shutil
 from PIL import Image
 import numpy as np
 
-TRAIN_COUNT = 55000
-TEST_COUNT = 10000
-VAL_COUNT = 5000
+TRAIN_COUNT = 5500
+TEST_COUNT = 1000
+VAL_COUNT = 500
 
 def mkdir_p(path):
     try:
