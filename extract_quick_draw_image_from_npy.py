@@ -5,9 +5,9 @@ import shutil
 from PIL import Image
 import numpy as np
 
-TRAIN_COUNT = 10000
-TEST_COUNT = 5000
-VAL_COUNT = 1000
+TRAIN_COUNT = 55000
+TEST_COUNT = 10000
+VAL_COUNT = 5000
 
 def mkdir_p(path):
     try:
@@ -62,7 +62,12 @@ def handleNpyFile(npyFile, type):
     fname = npyFile.split('/')[-1].split('.')[0]
 
     loadedFile = np.load(npyFile);
+
     print "has images: " + str(len(loadedFile))
+    if len(loadedFile) < TRAIN_COUNT + TEST_COUNT + VAL_COUNT:
+        print "not enough images"
+        return
+
     counter = 0
     for index, imageData in enumerate(loadedFile):
         imageName = fname + "_" +  str(index) + ".jpg"
