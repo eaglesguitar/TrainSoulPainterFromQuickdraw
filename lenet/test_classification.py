@@ -14,7 +14,7 @@ import caffe
 MODEL_FILE = 'lenet.prototxt'
 PRETRAINED = 'quick_draw_lenet_iter_10000.caffemodel'
 #图片已经处理成 lenet.prototxt的输入要求（尺寸28x28）且已经二值化为黑白色
-IMAGE_FILE = 'data/quickdraw_val_image/full_Fnumpy_bitmap_Fdog_6587.jpg'
+IMAGE_FILE = 'data/quickdraw_val_image/full_Fnumpy_bitmap_Fcat_6501.jpg'
 
 # print os.path.exists(MODEL_FILE)
 # print os.path.exists(PRETRAINED)
