@@ -20,7 +20,7 @@ VAL_OUTPUT_LMDB=$DATA_ROOT/quickdraw_val_lmdb
 
 # Set RESIZE=true to resize the images to 256x256. Leave as false if images have
 # already been resized using another tool.
-RESIZE=true
+RESIZE=false
 if $RESIZE; then
   RESIZE_HEIGHT=28
   RESIZE_WIDTH=28
@@ -70,6 +70,7 @@ GLOG_logtostderr=1 $CAFFE_TOOLS/convert_imageset \
     --resize_height=$RESIZE_HEIGHT \
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
+    --gray \
     $TRAIN_IMAGE_ROOT \
     $TRAIN_MAPPING_FILE \
     $TRAIN_OUTPUT_LMDB
@@ -80,6 +81,7 @@ GLOG_logtostderr=1 $CAFFE_TOOLS/convert_imageset \
     --resize_height=$RESIZE_HEIGHT \
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
+    --gray \
     $TEST_IMAGE_ROOT \
     $TEST_MAPPING_FILE \
     $TEST_OUTPUT_LMDB
@@ -90,6 +92,7 @@ GLOG_logtostderr=1 $CAFFE_TOOLS/convert_imageset \
     --resize_height=$RESIZE_HEIGHT \
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
+    --gray \
     $VAL_IMAGE_ROOT \
     $VAL_MAPPING_FILE \
     $VAL_OUTPUT_LMDB
