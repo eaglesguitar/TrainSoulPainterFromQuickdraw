@@ -88,12 +88,13 @@ def handleNpyFile(npyFile, type):
     print "done, total " + str(counter)
 
     return
-
+skipped = 0
 for (dirpath, dirnames, filenames) in walk(dataRoot + "source_npy"):
     for index, file in enumerate(filenames):
         if not file.endswith(".npy"):
+            skipped += 1
             continue
-        handleNpyFile(dataRoot + "source_npy/" + file, index)
+        handleNpyFile(dataRoot + "source_npy/" + file, index - skipped)
 
 trainTxtFile.close()
 testTxtFile.close()
