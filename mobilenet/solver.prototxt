@@ -1,0 +1,18 @@
+net: "train.prototxt"
+
+base_lr: 0.01
+lr_policy: "poly"
+power: 1
+momentum: 0.9
+weight_decay: 0.0000005
+
+display: 20
+max_iter: 2000
+snapshot: 1000
+snapshot_prefix: "quick_draw_mobilenet"
+
+solver_mode: CPU
+
+debug_info: false
+
+random_seed:0
